@@ -18,5 +18,10 @@ public class StringCalculatorTest {
 		assertEquals(0, cal.add(null));
 		assertEquals(0, cal.add(""));
 	}
+	
+	@Test
+	public void 숫자하나_문자열_입력시_해당_숫자반환_테스트() {
+		assertEquals(10, cal.add("10"));
+	}
 
 }

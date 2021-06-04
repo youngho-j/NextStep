@@ -6,6 +6,7 @@ public class StringCalculator {
 		if(text == null || text.isEmpty()) {
 			return 0;			
 		}
-		return 0;
+		// 요구사항 2. 숫자 하나를 문자열로 입력할 경우 해당 숫자를 반환
+		return Integer.parseInt(text);
 	}
 }
