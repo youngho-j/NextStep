@@ -12,6 +12,7 @@ public class CalculatorTest {
 	
 	// 매번 인스턴스 생성하는 것(반복적으로 발생하는 코드)을 줄여주는 메서드
 	// @Before - Test 메서드가 실행될때마다 그 전에 호출됨 즉, 테스트 실행 전마다 계속 호출됨
+	// 참고 @After는 Test 메서드 실행 다음에 호출 즉, 테스트 실행 후 계속 호출
 	@Before
 	public void setup() {
 		// junit에서는 멤버 필드로 초기화하는 것을 권장하지 않기때문에 @Before 어노테이션 사용
