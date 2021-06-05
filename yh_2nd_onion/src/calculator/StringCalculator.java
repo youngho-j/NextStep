@@ -3,21 +3,32 @@ package calculator;
 public class StringCalculator {
 	// 리팩토링 시 주의 깊게 살펴볼 부분은 private 메서드가 아니라 
 	// public으로 공개하고 있는 메서드가 얼마나 읽기 쉽고 좋은가가 가장 중요!
+	
 	public int add(String text) {
+		// 리팩토링을 극단적으로 한 이유는 
+		// 소스코드 읽을 때 이 메소드가 무슨 일을 하지는 최대한 쉽게 파악할 수 있도록 하기 위해 
+		// 좋은 코드란 세부 구현에 집중하도록 하지 않고, 논리적인 로직을 쉽게 파악할 수 있도록 구현하는 것
 		
-		// 요구사항 1. 빈 문자열 or null 값 입력시 0 반환
-		if(text == null || text.isEmpty()) {
+		//text 값이 비었으면 0 반환
+		if(isBlank(text)) {
 			return 0;			
 		}
 		
-		// 요구사항 3. 숫자 두개를 구분자(쉼표)로 입력시 숫자의 합을 반환
-		// 요구사항 3 리팩토링 (if 분기 제거 + 하나의 문자열을 해당 숫자로 변환)
-
-		String[] values = text.split(",");
-		
-		return sum(toInts(values));
+		// text 값이 비어있지 않으면 구분자로 분리, 숫자로 변환, 숫자의 합 리턴
+		return sum(toInts(splitString(text)));
 		
 	}
+	
+	// 요구사항 1 리팩토링 - 빈칸 혹은 null값일 경우 0리턴
+	private boolean isBlank(String text) {
+		return text == null || text.isEmpty();
+	}
+	
+	// 요구사항 3 리팩토링 - split 메소드로 빼기
+	private String[] splitString(String text) {
+		return text.split(","); 
+	}
+	
 	// 요구사항3 리팩토링 (add 메소드 내 역할 분리) - sum 메소드 역할 분리 필요(변환 + 합치기)  
 	private int sum(int[] values) {
 		int sum = 0;
