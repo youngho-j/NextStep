@@ -24,9 +24,9 @@ public class StringCalculator {
 		return text == null || text.isEmpty();
 	}
 	
-	// 요구사항 3 리팩토링 - split 메소드로 빼기
+	// 요구사항4 - 구분자를 쉼표 외에 : 도 사용 가능
 	private String[] splitString(String text) {
-		return text.split(","); 
+		return text.split(",|:"); 
 	}
 	
 	// 요구사항3 리팩토링 (add 메소드 내 역할 분리) - sum 메소드 역할 분리 필요(변환 + 합치기)  

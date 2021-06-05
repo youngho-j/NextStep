@@ -36,4 +36,9 @@ public class StringCalculatorTest {
 		// 2, 스플릿 분리
 		assertArrayEquals(new String[] {"1", "2"}, "1,2".split(","));
 	}
+	
+	@Test
+	public void 구분자_쉼표_또는_콜론_테스트() {
+		assertEquals(6, cal.add("1:2,3"));
+	}
 }
