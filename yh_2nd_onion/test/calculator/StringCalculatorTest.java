@@ -41,4 +41,15 @@ public class StringCalculatorTest {
 	public void 구분자_쉼표_또는_콜론_테스트() {
 		assertEquals(6, cal.add("1:2,3"));
 	}
+	
+	@Test
+	public void 커스텀_구분자_테스트() {
+		assertEquals(10, cal.add("//u\n6u4"));
+	}
+	
+	//기대하는 결과 값이 exception이므로 기대값에 runtimeException class 전달
+	@Test(expected = RuntimeException.class)
+	public void 음수_입력시_런타임_테스트() {
+		assertEquals(5, cal.add("-1;2;2"));
+	}
 }

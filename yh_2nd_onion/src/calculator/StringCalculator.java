@@ -1,5 +1,8 @@
 package calculator;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class StringCalculator {
 	// 리팩토링 시 주의 깊게 살펴볼 부분은 private 메서드가 아니라 
 	// public으로 공개하고 있는 메서드가 얼마나 읽기 쉽고 좋은가가 가장 중요!
@@ -24,8 +27,13 @@ public class StringCalculator {
 		return text == null || text.isEmpty();
 	}
 	
-	// 요구사항4 - 구분자를 쉼표 외에 : 도 사용 가능
+	// 요구사항5 - //와 \n 문자 사이에 커스텀 구분자 지정 가능
 	private String[] splitString(String text) {
+		Matcher m  = Pattern.compile("//(.)\n(.*)").matcher(text);
+		if(m.find()) {
+			String customDelimeter = m.group(1);
+			return m.group(2).split(customDelimeter);
+		}
 		return text.split(",|:"); 
 	}
 	
@@ -43,9 +51,18 @@ public class StringCalculator {
 		int[] arr = new int[values.length];
 		
 		for(int i = 0 ; i < values.length ; i++) {
-			arr[i] = Integer.parseInt(values[i]);
+			arr[i] = toPositive(values[i]);
 		}
 		
 		return arr;
+	}
+	
+	// 요구사항 6 음수 입력시 RuntimeException
+	private int toPositive(String val) {
+		int num = Integer.parseInt(val);
+		if(num < 0) {
+			throw new RuntimeException();
+		}
+		return num;
 	}
 }
