@@ -28,5 +28,12 @@ public class StringCalculatorTest {
 	public void 구분자_쉼표로_입력시_숫자의합_반환_테스트() {
 		assertEquals(9, cal.add("3,2,4"));
 	}
-
+	
+	@Test
+	public void 리팩토링_스플릿_분리_및_문자열_숫자변환_테스트() {
+		// 1. 문자열 숫자 변환 
+		assertArrayEquals(new String[] {"1"}, "1".split(","));
+		// 2, 스플릿 분리
+		assertArrayEquals(new String[] {"1", "2"}, "1,2".split(","));
+	}
 }
