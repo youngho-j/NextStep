@@ -28,6 +28,8 @@ public class StringCalculator {
 	}
 	
 	// 요구사항5 - //와 \n 문자 사이에 커스텀 구분자 지정 가능
+	// 임의의 문자 - ".", 개행문자를 제외한 모든 단일 문자에 해당
+	// 0번 이상 일치 - "*", 아스테리스크 또는 와일드카드, 0번 이상 반복되는 경우 일치한다고 판단하는 수량자
 	private String[] splitString(String text) {
 		Matcher m  = Pattern.compile("//(.)\n(.*)").matcher(text);
 		if(m.find()) {
