@@ -14,9 +14,12 @@ public class Ladder {
 	 *  -> 2차원 배열로 변경
 	 *  
 	 *  리팩토링
-	 *  Row 클래스
-	 *  Ladder 클래스 분리
+	 *  Row 클래스 - 행관리, 이동 여부 결정, 사다리 그리기
+	 *  Ladder 클래스 - 사다리 타기 전체 구조 관리
 	 *  
+	 *  LadderTest의 테스트를 RowTest로 이동(완)
+	 *  moveRow() 메서드 리팩토링 찾기(완) - 1 - 우측, -1 - 좌측 이동
+	 *  Row의 moveRow => move로 rename(완 - alt shift r[윈도우])
 	*/
 	Row[] rows;
 	
@@ -37,7 +40,7 @@ public class Ladder {
 	public int run(int numOfPerson) {
 		for(int i = 0 ; i < rows.length ; i++) {
 			Row row = rows[i];
-			numOfPerson = row.moveRow(numOfPerson);
+			numOfPerson = row.move(numOfPerson);
 		}
 		return numOfPerson;
 	}
