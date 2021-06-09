@@ -5,11 +5,15 @@ package ladder;
  * 메서드 이름 리팩토링
  * 1, -1 값을 명확히 한다.(상수 처리)
  * 상수 값을 enum으로 변경(상수 값이 여러개일 경우)
+ * 
+ * 리팩토링2
+ * 접근제어자 처리
  */
 
-public class Row {
+// 외부에 공개할 필요 없으므로
+class Row {
 	// enum - 클래스 안, 밖에 만들 수 있음.. 여기에선 안에서만 사용하므로 내부에 만들예정
-	enum Direction {
+	private enum Direction {
 		LEFT(-1),
 		CENTER(0),
 		RIGHT(1);
@@ -20,17 +24,18 @@ public class Row {
 			this.num = num;
 		}
 		
-		public int getNum() {
+		int getNum() {
 			return num;
 		}
 	}
-	
+//  1, -1 값을 명확히 한다.
 //	private static final int LEFT_DIRECTION = -1;
 //	private static final int RIGHT_DIRECTION = 1;
 //	private static final int CENTER_DIRECTION = 0;
 	
-	int[] persons;
+	private int[] persons;
 	
+	// 같은 패키지 다른 클래스에서 접근을 해야하므로 default 유지
 	Row(int numOfPerson){
 		persons = new int[numOfPerson];
 	}
