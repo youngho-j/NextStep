@@ -58,7 +58,41 @@ public class LadderTest {
 		assertEquals(0, ladder.run(1));
 		assertEquals(1, ladder.run(2));
 		assertEquals(2, ladder.run(3));
-		
-		
 	}
+	
+	@Test
+	public void testLadderhightWhenMinus() throws Exception {
+		try {
+			Ladder ladder = new Ladder(-1, 4);
+			fail("IllegalArgumentException 에러 발생해야함");
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			assertTrue(true);
+		}
+	}
+	
+	@Test
+	public void testdrawLinehightWhenMinus() throws Exception {
+		try {
+			Ladder ladder = new Ladder(3, 4);
+			ladder.drawLine(-1, 2);
+			fail("IllegalArgumentException 에러 발생해야함");
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			assertTrue(true);
+		}
+	}
+	@Test
+	public void testdrawLinehightWhenOver() throws Exception {
+		try {
+			Ladder ladder = new Ladder(3, 4);
+			ladder.drawLine(4, 2);
+			fail("IllegalArgumentException 에러 발생해야함");
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			assertTrue(true);
+		}
+	}
+	
+	
 }

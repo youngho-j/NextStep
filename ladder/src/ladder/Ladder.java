@@ -26,22 +26,38 @@ class Ladder {
 	 *  
 	 *  리팩토링3
 	 *  예외 상황에 대한 처리
-	 *  
-	 *  
+	 *  Ladder 메서드 예외처리
+	 *  - 배열의 길이(높이)가 1보다 작은 경우 - 예외 처리
+	 *  drawLine 메서드 예외처리
+	 *  - 배열의 길이(높이)가 0보다 작은 경우 - 예외처리
+	 *    배열 시작은 0부터 이므로 가장 위 사다리는 0부터 시작
+	 *  - 배열의 길이(높이)가 배열의 길이보다 큰 경우 - 예외 처리
+	 *    배열의 끝 값은 길이 - 1 이므로 가장 마지막 배열은 배열의 길이 - 1보다 크면 안됨 
+	 *  - 시작 지점의 경우 Row 클래스에서 예외 처리를 하기때문에 구현하지 않음
 	*/
 	private Row[] rows;
 	
 	// 사다리타기 참여 인원만큼 배열 길이 및 행 개수 지정
-	Ladder(int countOfRow, int numOfPerson) {
-		rows = new Row[countOfRow];
-		for(int i = 0 ; i < countOfRow ; i ++) {
+	Ladder(int height, int numOfPerson) {
+		if(height < 1) {
+			throw new IllegalArgumentException(String.format("사다리 높이는 1 이상이어야 합니다. 현재 값은 : %d", height));
+		}
+		rows = new Row[height];
+		for(int i = 0 ; i < height ; i ++) {
 			rows[i] = new Row(numOfPerson);
 		}
 	}
 	
 	// 이동선 긋기
-	void drawLine(int numOfRow,int startPosition) {
-		rows[numOfRow].drawLine(startPosition);
+	void drawLine(int height,int startPosition) {
+		if(height < 0) {
+			throw new IllegalArgumentException(String.format("사다리 높이는 0 이상이어야 합니다. 현재 값은 : %d", height));			
+		}
+		if(height > rows.length - 1) {
+			throw new IllegalArgumentException(String.format("사다리 최대 높이를 넘었습니다. 현재 값은 : %d", height));			
+		}
+		
+		rows[height].drawLine(startPosition);
 	}
 	
 	// 실행
