@@ -8,7 +8,7 @@ public class LadderTest {
 	
 	@Test
 	public void testRunWhenNoLine()  throws Exception {
-		Ladder ladder = new Ladder(1, 3);
+		Ladder ladder = new Ladder(new NaturalNumber(1), new NaturalNumber(3));
 		int target = ladder.run(0);
 		assertEquals(0, target);
 	}
@@ -16,14 +16,14 @@ public class LadderTest {
 	@Test
 	public void testRunWhenLineLeft() throws Exception {
 		// 1 1 0
-		Ladder ladder = new Ladder(1, 3);
-		ladder.drawLine(0, 1);
+		Ladder ladder = new Ladder(new NaturalNumber(1), new NaturalNumber(3));
+		ladder.drawLine(new NaturalNumber(1), new NaturalNumber(2));	
 		
 		int target = ladder.run(2);
 		assertEquals(1, target);
 		// 0 1 1
-		ladder = new Ladder(1, 3);
-		ladder.drawLine(0, 1);
+		ladder = new Ladder(new NaturalNumber(1), new NaturalNumber(3));
+		ladder.drawLine(new NaturalNumber(1), new NaturalNumber(2));	
 		
 		target = ladder.run(2);
 		assertEquals(1, target);
@@ -32,14 +32,13 @@ public class LadderTest {
 	@Test
 	public void testRunWhenLineRight() throws Exception {
 		// 0 1 1
-		Ladder ladder = new Ladder(1, 3);
-		ladder.drawLine(0, 1);
-		
+		Ladder ladder = new Ladder(new NaturalNumber(1), new NaturalNumber(3));
+		ladder.drawLine(new NaturalNumber(1), new NaturalNumber(2));		
 		int target = ladder.run(1);
 		assertEquals(2, target);
 		// 1 1 0
-		ladder = new Ladder(1, 3);
-		ladder.drawLine(0, 0);
+		ladder = new Ladder(new NaturalNumber(1), new NaturalNumber(3));
+		ladder.drawLine(new NaturalNumber(1), new NaturalNumber(1));
 		
 		target = ladder.run(0);
 		assertEquals(1, target);
@@ -49,10 +48,10 @@ public class LadderTest {
 		// 1 1 0 0
 		// 0 1 1 0
 		// 0 0 1 1
-		Ladder ladder = new Ladder(3, 4);
-		ladder.drawLine(0, 0);
-		ladder.drawLine(1, 1);
-		ladder.drawLine(2, 2);
+		Ladder ladder = new Ladder(new NaturalNumber(3), new NaturalNumber(4));
+		ladder.drawLine(new NaturalNumber(1), new NaturalNumber(1));
+		ladder.drawLine(new NaturalNumber(2), new NaturalNumber(2));
+		ladder.drawLine(new NaturalNumber(3), new NaturalNumber(3));
 		
 		assertEquals(3, ladder.run(0));
 		assertEquals(0, ladder.run(1));
@@ -63,7 +62,7 @@ public class LadderTest {
 	@Test
 	public void testLadderhightWhenMinus() throws Exception {
 		try {
-			Ladder ladder = new Ladder(-1, 4);
+			Ladder ladder = new Ladder(new NaturalNumber(-1), new NaturalNumber(3));
 			fail("IllegalArgumentException 에러 발생해야함");
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
@@ -74,8 +73,8 @@ public class LadderTest {
 	@Test
 	public void testdrawLinehightWhenMinus() throws Exception {
 		try {
-			Ladder ladder = new Ladder(3, 4);
-			ladder.drawLine(-1, 2);
+			Ladder ladder = new Ladder(new NaturalNumber(3), new NaturalNumber(4));
+			ladder.drawLine(new NaturalNumber(0), new NaturalNumber(3));
 			fail("IllegalArgumentException 에러 발생해야함");
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
@@ -85,8 +84,8 @@ public class LadderTest {
 	@Test
 	public void testdrawLinehightWhenOver() throws Exception {
 		try {
-			Ladder ladder = new Ladder(3, 4);
-			ladder.drawLine(4, 2);
+			Ladder ladder = new Ladder(new NaturalNumber(3), new NaturalNumber(4));
+			ladder.drawLine(new NaturalNumber(4), new NaturalNumber(4));
 			fail("IllegalArgumentException 에러 발생해야함");
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());

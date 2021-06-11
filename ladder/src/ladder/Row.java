@@ -21,6 +21,15 @@ package ladder;
  * - 현재 위치 값이 -1 => 예외
  *   겹치면 잘못 실행 되므로
  * move 메서드 예외처리(완)
+ * 
+ * 리팩토링4
+ * 예외처리시 반복되는 코드를
+ * int 형의 값을 1보다 큰 자연수의 값을 가진 NaturalNumber 타입의 객체로 만들어 추출
+ * 자연수 검증 코드를 추출하여 NaturalNumber 클래스로 만들기
+ * 
+ * 참고
+ * 해당 메서드가 사용중인 곳을 알고 싶을땐 ctrl shift g
+ * 테스트 코드 작성 -> 클래스 생성 -> 테스트 통과 확인 -> 중복된 코드 복사 -> 복사한 코드 테스트 -> 반복
  */
 
 // 외부에 공개할 필요 없으므로
@@ -49,29 +58,24 @@ class Row {
 	private int[] persons;
 	
 	// 같은 패키지 다른 클래스에서 접근을 해야하므로 default 유지
-	Row(int numOfPerson){
-		if(numOfPerson < 1) {
-			throw new IllegalArgumentException(String.format("사람 수는 한 명 이상이어야 합니다. 현재 값은 : %d",numOfPerson));
-		}
-		persons = new int[numOfPerson];
+	Row(NaturalNumber numOfPerson){
+		persons = new int[numOfPerson.getNumber()];
 	}
-	
-	void drawLine(int startPosition) {
-		if(startPosition < 0) {
-			throw new IllegalArgumentException(String.format("시작점은 0 이상이어야 합니다. 현재 값은 : %d", startPosition));
+		
+	void drawLine(NaturalNumber startPosition) {
+		int startIndex = startPosition.toArrayIndex();
+		
+		if(startIndex >= persons.length -1) {
+			throw new IllegalArgumentException(String.format("시작점은 %d 미만이어야 합니다. 현재 값은 : %d", persons.length -1, startIndex));			
 		}
 		
-		if(startPosition >= persons.length -1) {
-			throw new IllegalArgumentException(String.format("시작점은 %d 미만이어야 합니다. 현재 값은 : %d", persons.length -1, startPosition));			
-		}
-		
-		if(persons[startPosition] == -1) {
+		if(persons[startIndex] == -1) {
 			throw new IllegalArgumentException("선을 그을 수 없는 위치입니다.");						
 		}
 		// 오른쪽으로 이동하는 선
-		persons[startPosition] = Direction.RIGHT.getNum();
+		persons[startIndex] = Direction.RIGHT.getNum();
 		// 왼쪽으로 이동하는 선
-		persons[startPosition + 1] = Direction.LEFT.getNum();
+		persons[startIndex + 1] = Direction.LEFT.getNum();
 	}
 	
 	public int move(int startNum) {
