@@ -15,20 +15,22 @@ public class RowTest {
 	
 	@Test
 	public void testMoveWhenNoLine() throws Exception{
-		assertEquals(0, row.move(0));
-		assertEquals(2, row.move(2));
+		NaturalNumber target = row.move(new Marker(1));
+		assertEquals(1, target.getNumber());
+		target = row.move(new Marker(2));
+		assertEquals(2, target.getNumber());
 	}
 	
 	@Test
 	public void testMoveWhenLineLeft() throws Exception {
 		row.drawLine(new NaturalNumber(2));
-		assertEquals(1, row.move(2));	
+		assertEquals(2, row.move(new Marker(3)).getNumber());	
 	}
 	
 	@Test
 	public void testMoveWhenLineRight() throws Exception {
 		row.drawLine(new NaturalNumber(2));
-		assertEquals(2, row.move(1));
+		assertEquals(3, row.move(new Marker(2)).getNumber());
 	}
 	
 	// 테스트시 가능하면 경계 값을 테스트 하는게 좋음
@@ -67,7 +69,7 @@ public class RowTest {
 	public void testMoveWhenStartNumMinus() throws Exception {
 		try {
 			row.drawLine(new NaturalNumber(1));
-			row.move(-1);
+			row.move(new Marker(0));
 			fail("IllegalArgumentException 에러 발생해야함");
 		} catch(IllegalArgumentException e) {
 			System.out.println(e.getMessage());

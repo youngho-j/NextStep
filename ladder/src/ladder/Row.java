@@ -1,38 +1,6 @@
 package ladder;
 
-/*
- * 리팩토링
- * 메서드 이름 리팩토링
- * 1, -1 값을 명확히 한다.(상수 처리)
- * 상수 값을 enum으로 변경(상수 값이 여러개일 경우)
- * 
- * 리팩토링2
- * 접근제어자 처리
- * 
- * 리팩토링3
- * 예외 상황에 대한 처리
- * enum 부분에 대한 리팩토링
- * Row 생성자 예외처리(완)
- * - numOfPerson > 0
- * drawLine 메서드 예외처리
- * - startPosition < 0 => 예외 
- * - 5명 참여 => 범위 0 ~ 4 => 실제 그을 수 있는 범위는 3
- *   즉, startPosition >= persons.length - 1 => 예외
- * - 현재 위치 값이 -1 => 예외
- *   겹치면 잘못 실행 되므로
- * move 메서드 예외처리(완)
- * 
- * 리팩토링4
- * 예외처리시 반복되는 코드를
- * int 형의 값을 1보다 큰 자연수의 값을 가진 NaturalNumber 타입의 객체로 만들어 추출
- * 자연수 검증 코드를 추출하여 NaturalNumber 클래스로 만들기
- * 
- * 참고
- * 해당 메서드가 사용중인 곳을 알고 싶을땐 ctrl shift g
- * 테스트 코드 작성 -> 클래스 생성 -> 테스트 통과 확인 -> 중복된 코드 복사 -> 복사한 코드 테스트 -> 반복
- */
-
-// 외부에 공개할 필요 없으므로
+// 외부에 공개할 필요 없으므로 default 값 유지
 class Row {
 	// enum - 클래스 안, 밖에 만들 수 있음.. 여기에선 안에서만 사용하므로 내부에 만들예정
 	private enum Direction {
@@ -61,7 +29,7 @@ class Row {
 	Row(NaturalNumber numOfPerson){
 		persons = new int[numOfPerson.getNumber()];
 	}
-		
+	// 선긋기	
 	void drawLine(NaturalNumber startPosition) {
 		int startIndex = startPosition.toArrayIndex();
 		
@@ -78,21 +46,17 @@ class Row {
 		persons[startIndex + 1] = Direction.LEFT.getNum();
 	}
 	
-	public int move(int startNum) {
-		
-		if(startNum < 0) {
-			throw new IllegalArgumentException(String.format("사다리 시작 위치는 0 이상이어야 합니다. 현재 위치 : %d", startNum));									
-		}
-		
-		if(isNoLine(startNum)) {
+	// 이동 방향 결정
+	Marker move(Marker startNum) {
+		if(isNoLine(startNum.toArrayIndex())) {
 			return startNum;
 		}
 		// 숫자가 1이면 오른쪽으로 이동 가능
-		if(isRightDirection(startNum)) {
-			return startNum + 1;
+		if(isRightDirection(startNum.toArrayIndex())) {
+			return startNum.moveRight();
 		}
 		// 그 외의 경우(0, 1이 아닌경우)
-		return startNum - 1;		
+		return startNum.moveLeft();
 	}
 
 	private boolean isRightDirection(int numOfPerson) {
