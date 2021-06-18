@@ -5,6 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import core.NaturalNumber;
+
 public class RowTest {
 	private Row row;
 	

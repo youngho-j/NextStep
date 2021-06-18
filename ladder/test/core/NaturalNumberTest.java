@@ -1,4 +1,4 @@
-package ladder;
+package core;
 
 import static org.junit.Assert.*;
 

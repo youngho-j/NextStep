@@ -1,5 +1,7 @@
 package ladder;
 
+import core.NaturalNumber;
+
 class Ladder {
 
 	private Row[] rows;
@@ -14,11 +16,15 @@ class Ladder {
 	
 	// 이동선 긋기
 	void drawLine(NaturalNumber height, NaturalNumber startPosition) {
-		if(height.toArrayIndex() > rows.length - 1) {
+		if(isOverHeight(height)) {
 			throw new IllegalArgumentException(String.format("사다리 최대 높이를 넘었습니다. 현재 값은 : %d", height.getNumber()));			
 		}
 		
 		rows[height.toArrayIndex()].drawLine(startPosition);
+	}
+	// 기존 코드상 이해하기 힘든부분이 있어 메서드로 추출(현재 높이가 배열의 길이보다 클경우)
+	private boolean isOverHeight(NaturalNumber height) {
+		return height.toArrayIndex() > rows.length - 1;
 	}
 	
 	// 실행	

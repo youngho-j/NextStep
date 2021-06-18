@@ -24,14 +24,23 @@ class Node {
 	void changeLeft() {
 		this.direction = Direction.LEFT;
 	}
-
+	
+	// 기존 row에서 사용하고 있던 코드를 위임받음
+	boolean isLeftDirection() {
+		return this.direction == Direction.LEFT;
+	}
+	
+	boolean isRightDirection() {
+		return this.direction == Direction.RIGHT;
+	}
+	
 	Marker move(Marker marker) {
 		
-		if(this.direction == Direction.RIGHT) {
+		if(isLeftDirection()) {
 			return marker.moveRight();
 		}
 		
-		if(this.direction == Direction.LEFT) {
+		if(isLeftDirection()) {
 			return marker.moveLeft();
 		}
 		
@@ -42,7 +51,6 @@ class Node {
 	// 객체의 생성 코드를 별도의 클래스/메서드로 분리함으로써 객체 생성의 변화에 대비하는 데 유용
 	// static으로 만드어 자기 자신의 인스트너스를 생성해서 반환하는 메서드 - 팩토리 메서드
 	// 객체를 생성하는 역할을 분리하고자 함 즉, 객체 생성의 역할을 하는 클래스 메서드
-	// 정적 팩토리 메서드 사용 이유 - https://velog.io/@ljinsk3/%EC%A0%95%EC%A0%81-%ED%8C%A9%ED%86%A0%EB%A6%AC-%EB%A9%94%EC%84%9C%EB%93%9C%EB%8A%94-%EC%99%9C-%EC%82%AC%EC%9A%A9%ED%95%A0%EA%B9%8C
 	static Node createCenterNode() {
 		return new Node(Direction.CENTER);
 	}
@@ -77,5 +85,4 @@ class Node {
 			return false;
 		return true;
 	}
-
 }
