@@ -36,7 +36,7 @@ class Node {
 	
 	Marker move(Marker marker) {
 		
-		if(isLeftDirection()) {
+		if(isRightDirection()) {
 			return marker.moveRight();
 		}
 		

@@ -41,4 +41,8 @@ class Row {
 	Marker move(Marker startNum) {
 		return nodes[startNum.toArrayIndex()].move(startNum);
 	}
+	
+	Node[] getNodes() {
+		return this.nodes;
+	}
 }
