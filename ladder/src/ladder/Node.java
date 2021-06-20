@@ -4,7 +4,13 @@ package ladder;
 class Node {
 	// 팩토리 메서드를 사용하게 되면서 외부에서 사용되지 않음. 따라서 private으로 접근제어자 변경
 	private enum Direction {
-		LEFT, CENTER, RIGHT;
+		LEFT(-1), CENTER(0), RIGHT(1);
+		
+		private int symbol;
+		
+		private Direction(int symbol) {
+			this.symbol = symbol;
+		}
 	}
 	
 	private Direction direction;
@@ -63,6 +69,10 @@ class Node {
 		return new Node(Direction.LEFT);
 	}
 	
+	void appendSymbol(StringBuilder sb) {
+		sb.append(direction.symbol);
+	}
+
 	// 객체 간 비교를 위해 오버라이딩
 	@Override
 	public int hashCode() {
@@ -85,4 +95,5 @@ class Node {
 			return false;
 		return true;
 	}
+
 }

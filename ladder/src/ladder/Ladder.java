@@ -39,29 +39,12 @@ class Ladder {
 		return numOfPerson;
 	}
 	
-	// 출력을 위해 사다리 값 메세지로 표현
+	// 출력을 위해 사다리 값 메세지로 표현, 리팩토링(5-2)
 	static String generate(Row[] rows, NaturalNumber height, NaturalNumber numOfPerson) {
 		StringBuilder sb = new StringBuilder();
 		for(int i = 0 ; i < rows.length ; i++) {
 			Row row = rows[i];
-			Node[] nodes = row.getNodes();
-			for(int j = 0 ; j < nodes.length ; j++) {
-				Node node = nodes[j];
-				if(node.equals(Node.createCenterNode())) {
-					sb.append("0");
-				} else if(node.equals(Node.createLeftNode())) {
-					sb.append("-1");
-				} else {
-					sb.append("1");
-				}
-				
-				if(height.toArrayIndex() == i && numOfPerson.toArrayIndex() == j) {
-					sb.append("*");
-				}
-				
-				sb.append(" ");
-			}
-			sb.append("\n");			
+			row.generate(sb, i, height, numOfPerson);			
 		}
 		return sb.toString();
 	}

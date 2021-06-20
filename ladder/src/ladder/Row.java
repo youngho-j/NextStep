@@ -45,4 +45,19 @@ class Row {
 	Node[] getNodes() {
 		return this.nodes;
 	}
+	
+	void generate(StringBuilder sb, int currentHeight, NaturalNumber height, NaturalNumber numOfPerson) {
+		for(int j = 0 ; j < nodes.length ; j++) {
+			Node node = nodes[j];
+			// node에 기능을 위임 할 수 있음
+			//sb.append(node.getSymbol());
+			node.appendSymbol(sb);
+			if(height.toArrayIndex() == currentHeight && numOfPerson.toArrayIndex() == j) {
+				sb.append("*");
+			}
+			
+			sb.append(" ");
+		}
+		sb.append("\n");
+	}
 }

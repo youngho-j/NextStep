@@ -47,4 +47,22 @@ public class NodeTest {
 		Marker marker = node.move(new Marker(3));
 		assertEquals(new Marker(3), marker);
 	}
+	
+	@Test
+	public void testAppendSymbol() throws Exception {
+		StringBuilder sb = new StringBuilder();
+		Node node = Node.createCenterNode();
+		node.appendSymbol(sb);
+		assertEquals("0", sb.toString());
+		
+		sb = new StringBuilder();
+		node = Node.createLeftNode();
+		node.appendSymbol(sb);
+		assertEquals("-1", sb.toString());
+
+		sb = new StringBuilder();
+		node = Node.createRightNode();
+		node.appendSymbol(sb);
+		assertEquals("1", sb.toString());
+	}
 }

@@ -78,4 +78,9 @@ public class RowTest {
 			assertTrue(true);
 		}
 	}
+	
+	@Test
+	public void testGenerate() throws Exception {
+		
+	}
 }
