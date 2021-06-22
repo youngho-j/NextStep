@@ -1,6 +1,7 @@
 package core;
 
 public class NaturalNumber {
+	private static final int INTERVAL = 1;
 	private int number;
 	
 	public NaturalNumber(int number) {
@@ -15,7 +16,11 @@ public class NaturalNumber {
 	}
 
 	public int toArrayIndex() {
-		return this.number - 1;
+		return this.number - INTERVAL;
+	}
+
+	public static NaturalNumber createFromArrayIndex(int index) {
+		return new NaturalNumber(index + INTERVAL);
 	}
 
 	// 값 비교(equals 메서드), 동일 주소(hashCode 메서드) 오버라이딩 / 단축키 : alt shift s
@@ -40,6 +45,7 @@ public class NaturalNumber {
 			return false;
 		return true;
 	}
+
 	
 	
 }

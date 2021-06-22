@@ -33,18 +33,18 @@ class Ladder {
 			Row row = rows[i];
 			numOfPerson = row.move(numOfPerson);
 			// 로그 출력 부분
-			String result = generate(rows, new NaturalNumber(i + 1), numOfPerson);
+			String result = generate(rows, Position.createFromArrayIndex(i, numOfPerson.toArrayIndex()));
 			System.out.println(result);
 		}
 		return numOfPerson;
 	}
 	
-	// 출력을 위해 사다리 값 메세지로 표현, 리팩토링(5-2)
-	static String generate(Row[] rows, NaturalNumber height, NaturalNumber numOfPerson) {
+	// 출력을 위해 사다리 값 메세지로 표현, 리팩토링(5-2)	
+	static String generate(Row[] rows, Position position) {
 		StringBuilder sb = new StringBuilder();
 		for(int i = 0 ; i < rows.length ; i++) {
 			Row row = rows[i];
-			row.generate(sb, i, height, numOfPerson);			
+			row.generate(sb, i, position);			
 		}
 		return sb.toString();
 	}

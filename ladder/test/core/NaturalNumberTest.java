@@ -27,4 +27,10 @@ public class NaturalNumberTest {
 		NaturalNumber number = new NaturalNumber(3);
 		assertEquals(2, number.toArrayIndex());
 	}
+	
+	@Test
+	public void testCreateFromArrayIndex() throws Exception {
+		NaturalNumber actual = NaturalNumber.createFromArrayIndex(1);
+		assertEquals(new NaturalNumber(2), actual);
+	}
 }

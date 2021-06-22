@@ -69,6 +69,7 @@ class Node {
 		return new Node(Direction.LEFT);
 	}
 	
+	// node의 내부 상태값을 sb에 추가
 	void appendSymbol(StringBuilder sb) {
 		sb.append(direction.symbol);
 	}
