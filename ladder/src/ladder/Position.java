@@ -1,7 +1,7 @@
 package ladder;
 
 import core.NaturalNumber;
-
+// height, numberOfPerson 정보를 쌍으로 갖는 역할
 class Position {
 	
 	private NaturalNumber height;
