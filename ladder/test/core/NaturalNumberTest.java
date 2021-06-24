@@ -33,4 +33,11 @@ public class NaturalNumberTest {
 		NaturalNumber actual = NaturalNumber.createFromArrayIndex(1);
 		assertEquals(new NaturalNumber(2), actual);
 	}
+	
+	@Test
+	public void testMultiply() throws Exception {
+		NaturalNumber number = new NaturalNumber(3);
+		NaturalNumber actual = number.multiply(new NaturalNumber(4));
+		assertEquals(12, actual);
+	}
 }

@@ -23,6 +23,10 @@ public class NaturalNumber {
 		return new NaturalNumber(index + INTERVAL);
 	}
 
+	public NaturalNumber multiply(NaturalNumber operand) {
+		return new NaturalNumber(this.number * operand.number);
+	}
+
 	// 값 비교(equals 메서드), 동일 주소(hashCode 메서드) 오버라이딩 / 단축키 : alt shift s
 	@Override
 	public int hashCode() {
@@ -45,6 +49,7 @@ public class NaturalNumber {
 			return false;
 		return true;
 	}
+
 
 	
 	
