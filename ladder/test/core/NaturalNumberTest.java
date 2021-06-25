@@ -38,6 +38,6 @@ public class NaturalNumberTest {
 	public void testMultiply() throws Exception {
 		NaturalNumber number = new NaturalNumber(3);
 		NaturalNumber actual = number.multiply(new NaturalNumber(4));
-		assertEquals(12, actual);
+		assertEquals(new NaturalNumber(12), actual);
 	}
 }

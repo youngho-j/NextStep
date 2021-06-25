@@ -7,12 +7,16 @@ import core.NaturalNumber;
 public class RandomLadderCreator {
 	
 	private static final double DEFAULT_LINE_RATIO = 0.3;
-	private NaturalNumber totalPositions;
+	
 	private Row[] rows;
 	
+	private LadderSize ladderSize;
+	
 	// 사다리타기 참여 인원만큼 배열 길이 및 행 개수 지정(초기화)
-	RandomLadderCreator(NaturalNumber height, NaturalNumber numOfPerson) {
-		this.totalPositions = height.multiply(numOfPerson);
+	RandomLadderCreator(LadderSize ladderSize) {
+		NaturalNumber height = ladderSize.getHeight();
+		NaturalNumber numOfPerson = ladderSize.getNumOfPerson();
+		this.ladderSize = ladderSize;
 		
 		rows = new Row[height.getNumber()];
 		
@@ -38,26 +42,37 @@ public class RandomLadderCreator {
 	Row[] getLadder() {
 		return this.rows;
 	}
-
-	int[] generateStartPositions() {
+	
+	Position[] generateStartPositions() {
+		NaturalNumber[] numbers = generateRandomPositions();
+		return toPostions(numbers);
+	}
+	
+	//랜덤 위치 정보를 구하는 메서드
+	NaturalNumber[] generateRandomPositions() {
+		NaturalNumber totalPositions = ladderSize.getTotalPosition();
 		// 단축키 alt shift t : 리팩토링 메뉴
-		int countOfLine = getCountOfLine(totalPositions, DEFAULT_LINE_RATIO);
-		int[] startPositions = new int[countOfLine];
+		int countOfLine = ladderSize.getCountOfLine(DEFAULT_LINE_RATIO);
+		NaturalNumber[] startPositions = new NaturalNumber[countOfLine];
 		for(int i = 0 ; i < startPositions.length ; i++) {
 			startPositions[i] = randInt(1, totalPositions.getNumber());
+			System.out.println(String.format("random position : %s", startPositions[i]));
 		}
 		return startPositions;
 	}
-
-	static int getCountOfLine(NaturalNumber totalPositions, double ratio) {
-		Double val = totalPositions.getNumber() * ratio;
-		return val.intValue();
+	
+	// 2차원 배열로 변경
+	Position[] toPostions(NaturalNumber[] positions) {
+		Position[] startPositions = new Position[positions.length];
+		for(int i = 0 ; i < positions.length ; i++) {
+			startPositions[i] = ladderSize.getPosition(positions[i]);
+		}
+		return startPositions;
 	}
 	
 	//랜덤 수 생성
-	static int randInt(int min, int max) {
+	static NaturalNumber randInt(int min, int max) {
 		Random rand = new Random();
-		return rand.nextInt((max - min) + 1) + min;
+		return new NaturalNumber(rand.nextInt((max - min) + 1) + min);
 	}
-
 }

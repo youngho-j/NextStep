@@ -56,6 +56,9 @@ class Position {
 		return true;
 	}
 
-	
-	
+	// 사용자 객체 출력을 보기 위해 오버라이딩
+	@Override
+	public String toString() {
+		return "Position [height=" + height + ", numOfPerson=" + numOfPerson + "]";
+	}
 }
