@@ -2,7 +2,11 @@ package ladder;
 
 import static org.junit.Assert.*;
 
+import java.util.Arrays;
+
 import org.junit.Test;
+
+import core.NaturalNumber;
 
 public class RandomLadderCreatorTest {
 	
@@ -14,5 +18,12 @@ public class RandomLadderCreatorTest {
 		for(int i = 0 ; i < positions.length ; i++) {
 			System.out.println(String.format("position : %s", positions[i]));
 		}
+	}
+	
+	@Test
+	public void testIsExisted() throws Exception {
+		NaturalNumber[] startPositions = {new NaturalNumber(2), new NaturalNumber(3)};
+		assertTrue(RandomLadderCreator.isExisted(startPositions, new NaturalNumber(2)));
+		assertFalse(RandomLadderCreator.isExisted(startPositions, new NaturalNumber(4)));
 	}
 }
