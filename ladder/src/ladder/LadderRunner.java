@@ -12,9 +12,13 @@ public class LadderRunner {
 	Marker run(Marker numOfPerson) {
 		for(int i = 0 ; i < rows.length ; i++) {
 			Row row = rows[i];
-			numOfPerson = row.move(numOfPerson);
-			// 로그 출력 부분
+			// 로그 출력 부분 - 랜덤값으로 테스트를 할 수 없어 콘솔 출력으로 변환
+			System.out.println("Before : ");
 			String result = generate(rows, Position.createFromArrayIndex(i, numOfPerson.toArrayIndex()));
+			System.out.println(result);
+			numOfPerson = row.move(numOfPerson);		
+			System.out.println("After : ");
+			result = generate(rows, Position.createFromArrayIndex(i, numOfPerson.toArrayIndex()));
 			System.out.println(result);
 		}
 		return numOfPerson;

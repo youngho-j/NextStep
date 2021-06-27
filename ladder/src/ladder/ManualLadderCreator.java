@@ -2,12 +2,12 @@ package ladder;
 
 import core.NaturalNumber;
 // 사다리 생성 관련 클래스
-public class LadderCreator {
+public class ManualLadderCreator {
 
 	private Row[] rows;
 	
 	// 사다리타기 참여 인원만큼 배열 길이 및 행 개수 지정(초기화)
-	LadderCreator(NaturalNumber height, NaturalNumber numOfPerson) {
+	ManualLadderCreator(NaturalNumber height, NaturalNumber numOfPerson) {
 		rows = new Row[height.getNumber()];
 		for(int i = 0 ; i < height.getNumber() ; i ++) {
 			rows[i] = new Row(numOfPerson);

@@ -13,15 +13,18 @@ public class RandomLadderCreator {
 	private LadderSize ladderSize;
 	
 	// 사다리타기 참여 인원만큼 배열 길이 및 행 개수 지정(초기화)
-	RandomLadderCreator(LadderSize ladderSize) {
-		NaturalNumber height = ladderSize.getHeight();
-		NaturalNumber numOfPerson = ladderSize.getNumOfPerson();
-		this.ladderSize = ladderSize;
+	RandomLadderCreator(NaturalNumber height, NaturalNumber numOfPerson) {
+		this.ladderSize = LadderSize.create(height, numOfPerson);
 		
 		rows = new Row[height.getNumber()];
 		
 		for(int i = 0 ; i < height.getNumber() ; i ++) {
 			rows[i] = new Row(numOfPerson);
+		}
+		
+		Position[] startPositions = generateStartPositions();
+		for(Position position : startPositions) {
+			drawLine(position.getHeight(), position.getNumOfPerson());
 		}
 	}
 	

@@ -12,6 +12,14 @@ class Position {
 		this.numOfPerson = numOfPerson;
 	}
 	
+	NaturalNumber getHeight() {
+		return height;
+	}
+
+	NaturalNumber getNumOfPerson() {
+		return numOfPerson;
+	}
+
 	static Position create(int height, int numOfPerson) {
 		return new Position(new NaturalNumber(height), new NaturalNumber(numOfPerson));
 	}

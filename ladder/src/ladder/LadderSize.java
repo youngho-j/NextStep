@@ -13,16 +13,20 @@ public class LadderSize {
 		this.numOfPerson = numOfPerson;
 	}
 	
-	NaturalNumber getHeight() {
-		return height;
-	}
-	
-	NaturalNumber getNumOfPerson() {
-		return numOfPerson;
-	}
+//	NaturalNumber getHeight() {
+//		return height;
+//	}
+//	
+//	NaturalNumber getNumOfPerson() {
+//		return numOfPerson;
+//	}
 	
 	static LadderSize create(int height, int numOfPerson) {
-		return new LadderSize(new NaturalNumber(height), new NaturalNumber(numOfPerson));
+		return create(new NaturalNumber(height), new NaturalNumber(numOfPerson));
+	}
+	
+	static LadderSize create(NaturalNumber height, NaturalNumber numOfPerson) {
+		return new LadderSize(height, numOfPerson);
 	}
 	
 	// 전체 위치에서 몇번째 위치에 있는지 구하는 메서드
