@@ -3,12 +3,25 @@ package ladder;
 import core.NaturalNumber;
 // 전체 클래스 조율(생성, 실행, 과정 검증)
 class LadderGame {
-	private RandomLadderCreator ladderCreator;
 	
-	// 사다리타기 참여 인원만큼 배열 길이 및 행 개수 지정(초기화)
-	// 랜덤으로 변경하여 테스트 
+	enum LadderType {
+		MANUAL,
+		RANDOM;
+	}
+	
+	private LadderCreator ladderCreator;
+	
+	// enum을 통해 수동, 랜덤 게임 진행 선택 가능
 	LadderGame(NaturalNumber height, NaturalNumber numOfPerson) {
 		ladderCreator = new RandomLadderCreator(height, numOfPerson);
+	}
+	
+	LadderGame(NaturalNumber height, NaturalNumber numOfPerson, LadderType ladderType) {
+		if(ladderType == LadderType.MANUAL) {
+			ladderCreator = new ManualLadderCreator(height, numOfPerson);
+		} else {
+			ladderCreator = new RandomLadderCreator(height, numOfPerson);
+		}
 	}
 	
 	// 이동선 긋기
