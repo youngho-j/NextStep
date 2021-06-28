@@ -1,27 +1,17 @@
 package ladder;
 
 import core.NaturalNumber;
-// 전체 클래스 조율(생성, 실행, 과정 검증)
+import ladder.creator.LadderCreateFactory;
+import ladder.creator.LadderCreator;
+import ladder.creator.LadderCreateFactory.LadderType;
+// 클래스 조율(실행, 과정 검증)
 class LadderGame {
-	
-	enum LadderType {
-		MANUAL,
-		RANDOM;
-	}
 	
 	private LadderCreator ladderCreator;
 	
-	// enum을 통해 수동, 랜덤 게임 진행 선택 가능
-	LadderGame(NaturalNumber height, NaturalNumber numOfPerson) {
-		ladderCreator = new RandomLadderCreator(height, numOfPerson);
-	}
-	
+	// enum을 통해 수동, 랜덤 게임 생성 가능(역할 생성 + 구분) -> LadderCreateFactory로 역할 위임
 	LadderGame(NaturalNumber height, NaturalNumber numOfPerson, LadderType ladderType) {
-		if(ladderType == LadderType.MANUAL) {
-			ladderCreator = new ManualLadderCreator(height, numOfPerson);
-		} else {
-			ladderCreator = new RandomLadderCreator(height, numOfPerson);
-		}
+			ladderCreator = LadderCreateFactory.newLadderCreator(height, numOfPerson, ladderType); 
 	}
 	
 	// 이동선 긋기

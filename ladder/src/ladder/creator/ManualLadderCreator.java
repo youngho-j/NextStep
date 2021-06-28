@@ -1,6 +1,7 @@
-package ladder;
+package ladder.creator;
 
 import core.NaturalNumber;
+import ladder.Row;
 // 사다리 생성 관련 클래스
 public class ManualLadderCreator implements LadderCreator {
 

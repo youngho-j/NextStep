@@ -2,7 +2,7 @@ package ladder;
 
 import core.NaturalNumber;
 // height, numberOfPerson 정보를 쌍으로 갖는 역할
-class Position {
+public class Position {
 	
 	private NaturalNumber height;
 	private NaturalNumber numOfPerson;
@@ -12,11 +12,11 @@ class Position {
 		this.numOfPerson = numOfPerson;
 	}
 	
-	NaturalNumber getHeight() {
+	public NaturalNumber getHeight() {
 		return height;
 	}
 
-	NaturalNumber getNumOfPerson() {
+	public NaturalNumber getNumOfPerson() {
 		return numOfPerson;
 	}
 

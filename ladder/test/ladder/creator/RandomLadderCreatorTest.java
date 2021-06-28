@@ -1,10 +1,11 @@
-package ladder;
+package ladder.creator;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
 import core.NaturalNumber;
+import ladder.Position;
 
 public class RandomLadderCreatorTest {
 	

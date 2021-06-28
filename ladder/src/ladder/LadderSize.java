@@ -25,7 +25,7 @@ public class LadderSize {
 		return create(new NaturalNumber(height), new NaturalNumber(numOfPerson));
 	}
 	
-	static LadderSize create(NaturalNumber height, NaturalNumber numOfPerson) {
+	public static LadderSize create(NaturalNumber height, NaturalNumber numOfPerson) {
 		return new LadderSize(height, numOfPerson);
 	}
 	
@@ -46,23 +46,23 @@ public class LadderSize {
 	}
 
 	//생성된 좌표값을 Position 객체로 생성
-	Position getPosition(NaturalNumber currentTotalPosition) {
+	public Position getPosition(NaturalNumber currentTotalPosition) {
 		return Position.create(getPositionOfHeight(currentTotalPosition), getPositionOfPerson(currentTotalPosition));
 	}
 	
-	int getCountOfLine(double ratio) {
+	public int getCountOfLine(double ratio) {
 		NaturalNumber totalPositions = getTotalPosition();
 		Double val = totalPositions.getNumber() * ratio;
 		return val.intValue();
 	}
 	
 	// 전체 위치를 구하는 메서드
-	NaturalNumber getTotalPosition() {
+	public NaturalNumber getTotalPosition() {
 		return height.multiply(numOfPerson);
 	}
 	
 	// 사람수의 배수가 되는 자리인 경우(줄을 그을 수 없는 자리) 
-	boolean isMultipleOfPerson(NaturalNumber randomPostion) {
+	public boolean isMultipleOfPerson(NaturalNumber randomPostion) {
 		int remainder = randomPostion.getNumber() % numOfPerson.getNumber();
 		if(remainder == 0) {
 			return true;

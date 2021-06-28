@@ -3,11 +3,11 @@ package ladder;
 import core.NaturalNumber;
 
 // 외부에 공개할 필요 없으므로 default 값 유지
-class Row {
+public class Row {
 	private Node[] nodes;
 	
 	// 같은 패키지 다른 클래스에서 접근을 해야하므로 default 유지
-	Row(NaturalNumber numOfPerson){
+	public Row(NaturalNumber numOfPerson){
 		nodes = new Node[numOfPerson.getNumber()];
 		
 		for(int i = 0 ; i < nodes.length ; i++) {
@@ -15,7 +15,7 @@ class Row {
 		}
 	}
 	// 선긋기	
-	void drawLine(NaturalNumber startPosition) {
+	public void drawLine(NaturalNumber startPosition) {
 		int startIndex = startPosition.toArrayIndex();
 		
 		if(isOverNumOfPersons(startIndex)) {

@@ -1,8 +1,11 @@
-package ladder;
+package ladder.creator;
 
 import java.util.Random;
 
 import core.NaturalNumber;
+import ladder.LadderSize;
+import ladder.Position;
+import ladder.Row;
 
 public class RandomLadderCreator implements LadderCreator{
 	
