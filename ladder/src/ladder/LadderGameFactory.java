@@ -10,7 +10,8 @@ public class LadderGameFactory {
 	private LadderGameFactory() {}
 	
 	static LadderGame randomLadderGame(NaturalNumber height, NaturalNumber numOfPerson) {
-		RandomLadderCreator ladderCreator = new RandomLadderCreator(height, numOfPerson);
+		ManualLadderCreator manualLadderCreator = new ManualLadderCreator(height, numOfPerson);
+		RandomLadderCreator ladderCreator = new RandomLadderCreator(manualLadderCreator);
 		return new LadderGame(ladderCreator);
 	}
 	

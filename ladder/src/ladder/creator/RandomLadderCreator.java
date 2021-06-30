@@ -5,33 +5,38 @@ import java.util.Random;
 import core.NaturalNumber;
 import ladder.LadderSize;
 import ladder.Position;
+import ladder.Row;
 
-public class RandomLadderCreator extends ManualLadderCreator implements LadderCreator{
+public class RandomLadderCreator implements LadderCreator{
 	
 	private static final double DEFAULT_LINE_RATIO = 0.3;
 	
 	private LadderSize ladderSize;
+
+	private ManualLadderCreator ladderCreator;
 	
-	public RandomLadderCreator(NaturalNumber height, NaturalNumber numOfPerson) {
-		// ManaulLadderCreator 클래스를 상속받았기 때문에 해당 파라미터를 상속받은 클래스에 넘겨줌
-		// 그렇게되면 사다리 초기화 작업을 현재 클래스에서 진행 할 필요가 없음.
-		// 단, 해당 값을 쓰기 위해선 상속받은 클래스의 메서드를 통해 값을 사용해야함
-		super(height, numOfPerson);
-		
-		this.ladderSize = LadderSize.create(height, numOfPerson);
+	// 조합을 통한 중복제거 - 내부에서 Manual.. 생성 후 Random에서 Manual의 기능을 사용할 수 있도록 위임
+	// 해당 파라미터를 LadderCreator 인터페이스로 바꾸면 더 좋지만
+	// getter 메서드가 노출이 되므로 별로 좋지 않을 듯..
+	public RandomLadderCreator(ManualLadderCreator ladderCreator) {
+		this.ladderCreator = ladderCreator;
+		this.ladderSize = ladderCreator.getLadderSize();
 		
 		Position[] startPositions = generateStartPositions();
 		for(Position position : startPositions) {
-			super.drawLine(position.getHeight(), position.getNumOfPerson());
+			ladderCreator.drawLine(position.getHeight(), position.getNumOfPerson());
 		}
+	}
+	
+	@Override
+	public Row[] getLadder() {
+		return ladderCreator.getLadder();
 	}
 	
 	@Override
 	public void drawLine(NaturalNumber height, NaturalNumber startPosition) {
 		throw new UnsupportedOperationException("RandomLadderCreator에서는 drawLine 메서드 호출 불가");
 	}
-
-
 
 	Position[] generateStartPositions() {
 		NaturalNumber[] numbers = generateRandomPositions();

@@ -1,18 +1,28 @@
 package ladder.creator;
 
 import core.NaturalNumber;
+import ladder.LadderSize;
 import ladder.Row;
 // 사다리 생성 관련 클래스
 public class ManualLadderCreator implements LadderCreator {
 
 	private Row[] rows;
 	
+	private LadderSize ladderSize;
+	
 	// 사다리타기 참여 인원만큼 배열 길이 및 행 개수 지정(초기화)
 	public ManualLadderCreator(NaturalNumber height, NaturalNumber numOfPerson) {
+		
+		this.ladderSize = LadderSize.create(height, numOfPerson);
+		
 		rows = new Row[height.getNumber()];
 		for(int i = 0 ; i < height.getNumber() ; i ++) {
 			rows[i] = new Row(numOfPerson);
 		}
+	}
+	
+	LadderSize getLadderSize() {
+		return ladderSize;
 	}
 	
 	// 이동선 긋기
