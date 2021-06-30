@@ -5,52 +5,34 @@ import java.util.Random;
 import core.NaturalNumber;
 import ladder.LadderSize;
 import ladder.Position;
-import ladder.Row;
 
-public class RandomLadderCreator implements LadderCreator{
+public class RandomLadderCreator extends ManualLadderCreator implements LadderCreator{
 	
 	private static final double DEFAULT_LINE_RATIO = 0.3;
 	
-	private Row[] rows;
-	
 	private LadderSize ladderSize;
 	
-	// 사다리타기 참여 인원만큼 배열 길이 및 행 개수 지정(초기화)
 	public RandomLadderCreator(NaturalNumber height, NaturalNumber numOfPerson) {
+		// ManaulLadderCreator 클래스를 상속받았기 때문에 해당 파라미터를 상속받은 클래스에 넘겨줌
+		// 그렇게되면 사다리 초기화 작업을 현재 클래스에서 진행 할 필요가 없음.
+		// 단, 해당 값을 쓰기 위해선 상속받은 클래스의 메서드를 통해 값을 사용해야함
+		super(height, numOfPerson);
+		
 		this.ladderSize = LadderSize.create(height, numOfPerson);
-		
-		rows = new Row[height.getNumber()];
-		
-		for(int i = 0 ; i < height.getNumber() ; i ++) {
-			rows[i] = new Row(numOfPerson);
-		}
 		
 		Position[] startPositions = generateStartPositions();
 		for(Position position : startPositions) {
-			drawLine(position.getHeight(), position.getNumOfPerson());
+			super.drawLine(position.getHeight(), position.getNumOfPerson());
 		}
-	}
-	
-	// 이동선 긋기
-	@Override
-	public void drawLine(NaturalNumber height, NaturalNumber startPosition) {
-		if(isOverHeight(height)) {
-			throw new IllegalArgumentException(String.format("사다리 최대 높이를 넘었습니다. 현재 값은 : %d", height.getNumber()));			
-		}
-		
-		rows[height.toArrayIndex()].drawLine(startPosition);
-	}
-	
-	// 기존 코드상 이해하기 힘든부분이 있어 메서드로 추출(현재 높이가 배열의 길이보다 클경우)
-	private boolean isOverHeight(NaturalNumber height) {
-		return height.toArrayIndex() > rows.length - 1;
 	}
 	
 	@Override
-	public Row[] getLadder() {
-		return this.rows;
+	public void drawLine(NaturalNumber height, NaturalNumber startPosition) {
+		throw new UnsupportedOperationException("RandomLadderCreator에서는 drawLine 메서드 호출 불가");
 	}
-	
+
+
+
 	Position[] generateStartPositions() {
 		NaturalNumber[] numbers = generateRandomPositions();
 		return toPostions(numbers);

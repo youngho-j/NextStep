@@ -16,6 +16,18 @@ public class LadderGameTest {
 	}
 		
 	@Test
+	public void testRunWhenRandomLadderAndDrawLine() throws Exception {
+		try {
+			LadderGame ladder = LadderGameFactory.randomLadderGame(new NaturalNumber(3), new NaturalNumber(4));
+			ladder.drawLine(new NaturalNumber(1) , new NaturalNumber(1)); 
+			fail();
+		} catch (UnsupportedOperationException e) {
+			System.out.println(e.getMessage());
+			assertTrue(true);
+		}
+	}
+	
+	@Test
 	public void testRunWhenRandomLadderAndDIP() throws Exception {
 		LadderGame ladder = LadderGameFactory.randomLadderGame(new NaturalNumber(3), new NaturalNumber(4));
 		Marker result = ladder.run(new Marker(2));
