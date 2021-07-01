@@ -13,13 +13,13 @@ public class LadderSize {
 		this.numOfPerson = numOfPerson;
 	}
 	
-//	NaturalNumber getHeight() {
-//		return height;
-//	}
-//	
-//	NaturalNumber getNumOfPerson() {
-//		return numOfPerson;
-//	}
+	NaturalNumber getHeight() {
+		return height;
+	}
+	
+	NaturalNumber getNumOfPerson() {
+		return numOfPerson;
+	}
 	
 	static LadderSize create(int height, int numOfPerson) {
 		return create(new NaturalNumber(height), new NaturalNumber(numOfPerson));
@@ -29,25 +29,12 @@ public class LadderSize {
 		return new LadderSize(height, numOfPerson);
 	}
 	
-	// 전체 위치에서 몇번째 위치에 있는지 구하는 메서드
-	NaturalNumber getPositionOfPerson(NaturalNumber currentTotalPosition) {
-		int remainder = currentTotalPosition.getNumber() % numOfPerson.getNumber();
-		if(remainder == 0) {
-			return numOfPerson;
-		}
-		return new NaturalNumber(remainder);
-	}
-
-	// 전체 라인에서 몇번째 라인에 있는지 구하는 메서드
-	NaturalNumber getPositionOfHeight(NaturalNumber currentTotalPosition) {
-		Double ceilDividende = 0.0;
-		ceilDividende = Math.ceil(currentTotalPosition.getNumber() / (double)numOfPerson.getNumber());
-		return new NaturalNumber(ceilDividende.intValue());
-	}
-
 	//생성된 좌표값을 Position 객체로 생성
-	public Position getPosition(NaturalNumber currentTotalPosition) {
-		return Position.create(getPositionOfHeight(currentTotalPosition), getPositionOfPerson(currentTotalPosition));
+	public Position getPosition(RandomNaturalNumber randomNaturalNumber) {
+		int positionOfPerson = randomNaturalNumber.getPositionOfPerson(numOfPerson.getNumber());
+		int positionOfHeight = randomNaturalNumber.getPositionOfHeight(numOfPerson.getNumber());
+		
+		return Position.create(positionOfPerson, positionOfHeight);
 	}
 	
 	public int getCountOfLine(double ratio) {

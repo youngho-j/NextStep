@@ -5,6 +5,7 @@ import java.util.Random;
 import core.NaturalNumber;
 import ladder.LadderSize;
 import ladder.Position;
+import ladder.RandomNaturalNumber;
 import ladder.Row;
 
 public class RandomLadderCreator implements LadderCreator{
@@ -39,20 +40,20 @@ public class RandomLadderCreator implements LadderCreator{
 	}
 
 	Position[] generateStartPositions() {
-		NaturalNumber[] numbers = generateRandomPositions();
+		RandomNaturalNumber[] numbers = generateRandomPositions();
 		return toPostions(numbers);
 	}
 	
 	//랜덤 위치 정보를 구하는 메서드
-	NaturalNumber[] generateRandomPositions() {
+	RandomNaturalNumber[] generateRandomPositions() {
 		NaturalNumber totalPositions = ladderSize.getTotalPosition();
 		// 단축키 alt shift t : 리팩토링 메뉴
 		int countOfLine = ladderSize.getCountOfLine(DEFAULT_LINE_RATIO);
-		NaturalNumber[] startPositions = new NaturalNumber[countOfLine];
+		RandomNaturalNumber[] startPositions = new RandomNaturalNumber[countOfLine];
 		
 		int i = 0;
 		do {
-			NaturalNumber randomPosition = randInt(1, totalPositions.getNumber());
+			RandomNaturalNumber randomPosition = randInt(1, totalPositions.getNumber());
 			if(ladderSize.isMultipleOfPerson(randomPosition)) {
 				continue;
 			}
@@ -82,7 +83,7 @@ public class RandomLadderCreator implements LadderCreator{
 	}
 	
 	// 2차원 배열로 변경
-	Position[] toPostions(NaturalNumber[] positions) {
+	Position[] toPostions(RandomNaturalNumber[] positions) {
 		Position[] startPositions = new Position[positions.length];
 		for(int i = 0 ; i < positions.length ; i++) {
 			startPositions[i] = ladderSize.getPosition(positions[i]);
@@ -91,10 +92,11 @@ public class RandomLadderCreator implements LadderCreator{
 	}
 	
 	//랜덤 수 생성
-	static NaturalNumber randInt(int min, int max) {
+	static RandomNaturalNumber randInt(int min, int max) {
 		Random rand = new Random();
-		return new NaturalNumber(rand.nextInt((max - min) + 1) + min);
+		return new RandomNaturalNumber(rand.nextInt((max - min) + 1) + min);
 	}
+	
 	// 랜덤으로 생성된 지점이 배열에 해당 값과 같은 값이 존재하는지 안하는지 검사
 	public static boolean isExisted(NaturalNumber[] startPositions, 
 			NaturalNumber randomPosition) {
