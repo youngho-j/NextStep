@@ -11,7 +11,7 @@ public class LadderGameTest {
 	@Test
 	public void testRunBigLadderAndDIP() throws Exception {
 		LadderGame ladder = LadderGameFactory.randomLadderGame(new NaturalNumber(10), new NaturalNumber(6));
-		Marker result = ladder.run(new Marker(2));
+		Marker result = ladder.run(new Marker(1));
 		System.out.println(result);
 	}
 		

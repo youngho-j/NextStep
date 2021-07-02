@@ -31,10 +31,11 @@ public class LadderSize {
 	
 	//생성된 좌표값을 Position 객체로 생성
 	public Position getPosition(RandomNaturalNumber randomNaturalNumber) {
-		int positionOfPerson = randomNaturalNumber.getPositionOfPerson(numOfPerson.getNumber());
+		// 해당 순서의 높이 및 위치를 변수로 변경
 		int positionOfHeight = randomNaturalNumber.getPositionOfHeight(numOfPerson.getNumber());
+		int positionOfPerson = randomNaturalNumber.getPositionOfPerson(numOfPerson.getNumber());
 		
-		return Position.create(positionOfPerson, positionOfHeight);
+		return Position.create(positionOfHeight, positionOfPerson);
 	}
 	
 	public int getCountOfLine(double ratio) {
