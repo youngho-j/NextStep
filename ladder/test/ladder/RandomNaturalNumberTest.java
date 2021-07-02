@@ -4,8 +4,6 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import core.NaturalNumber;
-
 public class RandomNaturalNumberTest {
 
 	@Test
@@ -24,5 +22,13 @@ public class RandomNaturalNumberTest {
 		// 1 2 3
 				// 4 5 6 -> 4번의 높이는 2, 위치는 1 
 		assertEquals(2, actual);
+	}
+	
+	@Test
+	public void testIsMultipleOfPerson() throws Exception {
+		RandomNaturalNumber randomNumber = new RandomNaturalNumber(8);
+		assertTrue(randomNumber.isMultipleOfPerson(4));
+		randomNumber = new RandomNaturalNumber(5);
+		assertFalse(randomNumber.isMultipleOfPerson(3));
 	}
 }

@@ -49,12 +49,8 @@ public class LadderSize {
 	}
 	
 	// 사람수의 배수가 되는 자리인 경우(줄을 그을 수 없는 자리) 
-	public boolean isMultipleOfPerson(NaturalNumber randomPostion) {
-		int remainder = randomPostion.getNumber() % numOfPerson.getNumber();
-		if(remainder == 0) {
-			return true;
-		}
-		return false;
+	public boolean isMultipleOfPerson(RandomNaturalNumber randomPostion) {
+		return randomPostion.isMultipleOfPerson(numOfPerson.getNumber());
 	}
 
 }
