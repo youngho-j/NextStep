@@ -1,6 +1,7 @@
 package core;
 
 public class NaturalNumber {
+	private static final int FIRST_OF_NATURAL_NUMBER = 1;
 	private static final int INTERVAL = 1;
 	private int number;
 	
@@ -26,7 +27,12 @@ public class NaturalNumber {
 	public NaturalNumber multiply(NaturalNumber operand) {
 		return new NaturalNumber(this.number * operand.number);
 	}
+	
 
+	public boolean isFirst() {
+		return getNumber() == FIRST_OF_NATURAL_NUMBER;
+	}
+	
 	// 값 비교(equals 메서드), 동일 주소(hashCode 메서드) 오버라이딩 / 단축키 : alt shift s
 	@Override
 	public int hashCode() {

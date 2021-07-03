@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import ladder.RandomNaturalNumber;
+
 public class NaturalNumberTest {
 
 	@Test
@@ -39,5 +41,14 @@ public class NaturalNumberTest {
 		NaturalNumber number = new NaturalNumber(3);
 		NaturalNumber actual = number.multiply(new NaturalNumber(4));
 		assertEquals(new NaturalNumber(12), actual);
+	}
+	
+	@Test
+	public void testIsFirst() throws Exception {
+		NaturalNumber number = new NaturalNumber(1);
+		assertTrue(number.isFirst());
+		
+		number = new RandomNaturalNumber(2);
+		assertFalse(number.isFirst());
 	}
 }
