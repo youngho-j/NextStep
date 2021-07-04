@@ -13,11 +13,11 @@ public class LadderSize {
 		this.numOfPerson = numOfPerson;
 	}
 	
-	NaturalNumber getHeight() {
+	public NaturalNumber getHeight() {
 		return height;
 	}
 	
-	NaturalNumber getNumOfPerson() {
+	public NaturalNumber getNumOfPerson() {
 		return numOfPerson;
 	}
 	

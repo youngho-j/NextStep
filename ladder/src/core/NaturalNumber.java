@@ -2,7 +2,8 @@ package core;
 
 public class NaturalNumber {
 	private static final int FIRST_OF_NATURAL_NUMBER = 1;
-	private static final int INTERVAL = 1;
+	private static final int NODE_INTERVAL = 1;
+	
 	private int number;
 	
 	public NaturalNumber(int number) {
@@ -17,11 +18,11 @@ public class NaturalNumber {
 	}
 
 	public int toArrayIndex() {
-		return this.number - INTERVAL;
+		return this.number - NODE_INTERVAL;
 	}
 
 	public static NaturalNumber createFromArrayIndex(int index) {
-		return new NaturalNumber(index + INTERVAL);
+		return new NaturalNumber(index + NODE_INTERVAL);
 	}
 
 	public NaturalNumber multiply(NaturalNumber operand) {
@@ -30,7 +31,11 @@ public class NaturalNumber {
 	
 
 	public boolean isFirst() {
-		return getNumber() == FIRST_OF_NATURAL_NUMBER;
+		return isFirst(getNumber());
+	}
+	
+	public boolean isFirst(int number) {
+		return number == FIRST_OF_NATURAL_NUMBER;
 	}
 	
 	// 값 비교(equals 메서드), 동일 주소(hashCode 메서드) 오버라이딩 / 단축키 : alt shift s

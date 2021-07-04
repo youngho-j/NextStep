@@ -2,7 +2,13 @@ package ladder;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
+import javax.naming.NameAlreadyBoundException;
+
 import org.junit.Test;
+
+import core.NaturalNumber;
 
 public class RandomNaturalNumberTest {
 
@@ -30,5 +36,19 @@ public class RandomNaturalNumberTest {
 		assertTrue(randomNumber.isMultipleOfPerson(4));
 		randomNumber = new RandomNaturalNumber(5);
 		assertFalse(randomNumber.isMultipleOfPerson(3));
+	}
+	
+	@Test
+	public void testCheckedNaturalNumbers() throws Exception {
+		RandomNaturalNumber randomNumber = new RandomNaturalNumber(2);
+		ArrayList<RandomNaturalNumber> naturalNumbers = randomNumber.checkedNaturalNumbers(new NaturalNumber(3));
+		assertTrue(naturalNumbers.size() == 3);
+	}
+	
+	@Test
+	public void testCheckedNaturalNumbersWhenFirst() throws Exception {
+		RandomNaturalNumber randomNumber = new RandomNaturalNumber(4);
+		ArrayList<RandomNaturalNumber> naturalNumbers = randomNumber.checkedNaturalNumbers(new NaturalNumber(3));
+		assertTrue(naturalNumbers.size() == 2);
 	}
 }
