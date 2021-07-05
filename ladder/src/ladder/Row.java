@@ -4,6 +4,7 @@ import core.NaturalNumber;
 
 // 외부에 공개할 필요 없으므로 default 값 유지
 public class Row {
+	private static final int INTEVAL = 1;
 	private Node[] nodes;
 	
 	// 같은 패키지 다른 클래스에서 접근을 해야하므로 default 유지
@@ -29,7 +30,7 @@ public class Row {
 		// 오른쪽으로 이동하는 선
 		nodes[startIndex].changeRight();
 		// 왼쪽으로 이동하는 선
-		nodes[startIndex + 1].changeLeft();
+		nodes[startIndex + INTEVAL].changeLeft();
 	}
 	
 	// 기존 코드상 이해하기 힘든부분이 있어 메서드로 추출(선 시작 위치가 참여 인원수보다 클 경우)

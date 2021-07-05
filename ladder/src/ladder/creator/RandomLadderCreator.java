@@ -81,7 +81,7 @@ public class RandomLadderCreator implements LadderCreator {
 		return positions;
 	}
 
-	// 랜덤 수 생성
+	// 랜덤 수 생성(최소 값, 최대 값 사이의 값이 나옴)
 	static RandomNaturalNumber randInt(int min, int max) {
 		Random rand = new Random();
 		return new RandomNaturalNumber(rand.nextInt((max - min) + 1) + min);

@@ -38,7 +38,7 @@ public class NaturalNumber {
 		return number == FIRST_OF_NATURAL_NUMBER;
 	}
 	
-	// 값 비교(equals 메서드), 동일 주소(hashCode 메서드) 오버라이딩 / 단축키 : alt shift s
+	// 값 비교(equals 메서드), 동일 주소(hashCode 메서드) 오버라이딩 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -60,11 +60,10 @@ public class NaturalNumber {
 			return false;
 		return true;
 	}
-	
-	// 사용자 객체 출력을 보기 위해 오버라이딩
+
 	@Override
 	public String toString() {
-		return "NaturalNumber [number=" + number + "]";
+		return "[" + number + "]";
 	}
 	
 }

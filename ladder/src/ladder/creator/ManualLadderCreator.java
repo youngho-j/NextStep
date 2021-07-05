@@ -16,6 +16,7 @@ public class ManualLadderCreator implements LadderCreator {
 		this.ladderSize = LadderSize.create(height, numOfPerson);
 		
 		rows = new Row[height.getNumber()];
+		
 		for(int i = 0 ; i < height.getNumber() ; i ++) {
 			rows[i] = new Row(numOfPerson);
 		}
